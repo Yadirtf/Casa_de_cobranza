@@ -266,12 +266,13 @@ function buildBarChart() {
   const wrap = document.getElementById('barChart');
   if (!wrap) return;
   const max = Math.max(...MONTHLY_DATA.map(d => d.val));
+  const containerH = 110; // px available for bars
   MONTHLY_DATA.forEach(d => {
-    const pct = (d.val / max) * 100;
+    const h = Math.max(4, Math.round((d.val / max) * containerH));
     const col = document.createElement('div');
     col.className = 'bar-col';
     col.innerHTML = `
-      <div class="bar-fill" style="height:${pct}%" title="${d.val}M recaudado"></div>
+      <div class="bar-fill" style="height:${h}px" title="${d.val}M recaudado"></div>
       <span class="bar-label">${d.month}</span>
     `;
     wrap.appendChild(col);

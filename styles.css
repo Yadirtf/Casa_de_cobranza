@@ -373,21 +373,22 @@ textarea { resize: vertical; }
 .bar-chart-wrap {
   display: flex;
   align-items: flex-end;
-  gap: 10px;
-  height: 140px;
+  gap: 8px;
+  height: 130px;
   padding-top: .5rem;
+  border-bottom: 1px solid var(--border);
 }
-.bar-col { display: flex; flex-direction: column; align-items: center; gap: .4rem; flex: 1; }
+.bar-col { display: flex; flex-direction: column; align-items: center; gap: .4rem; flex: 1; min-width: 0; }
 .bar-fill {
   width: 100%;
-  border-radius: 6px 6px 0 0;
-  background: linear-gradient(180deg, #1c64f2, #1a56db);
+  border-radius: 5px 5px 0 0;
+  background: linear-gradient(180deg, #3b82f6, #1a56db);
   min-height: 4px;
-  transition: height .8s cubic-bezier(.22,1,.36,1);
-  position: relative;
+  cursor: pointer;
+  transition: filter .15s ease;
 }
-.bar-fill:hover { background: linear-gradient(180deg, #60a5fa, #1c64f2); }
-.bar-label { font-size: .68rem; color: var(--text-3); }
+.bar-fill:hover { filter: brightness(1.25); }
+.bar-label { font-size: .65rem; color: var(--text-3); white-space: nowrap; }
 
 /* RECENT */
 .recent-card {
