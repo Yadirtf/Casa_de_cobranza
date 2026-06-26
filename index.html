@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casa de Cobranzas del Putumayo E.U. — Sistema de Gestión</title>
+  <meta name="description" content="Sistema web de gestión jurídica y cobranza para Casa de Cobranzas del Putumayo E.U. Administra cartera, seguimiento de procesos y recuperación de créditos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     SIDEBAR
+══════════════════════════════════════════════ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-logo">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="10" fill="url(#brandGrad)"/>
+        <path d="M10 28 L20 12 L30 28" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M14 22 H26" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="20" cy="28" r="2.5" fill="white"/>
+        <defs>
+          <linearGradient id="brandGrad" x1="0" y1="0" x2="40" y2="40">
+            <stop offset="0%" stop-color="#1a56db"/>
+            <stop offset="100%" stop-color="#0e3a8c"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="brand-text">
+      <span class="brand-name">CobranzasPutumayo</span>
+      <span class="brand-sub">E.U.</span>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <span class="nav-group-label">Principal</span>
+    <a href="#" class="nav-item active" data-page="dashboard" id="nav-dashboard">
+      <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/></svg>
+      <span>Dashboard</span>
+    </a>
+    <a href="#" class="nav-item" data-page="cartera" id="nav-cartera">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 10h16M4 14h10M4 18h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span>Cartera de Clientes</span>
+      <span class="nav-badge">247</span>
+    </a>
+    <a href="#" class="nav-item" data-page="nuevo" id="nav-nuevo">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span>Nuevo Registro</span>
+    </a>
+
+    <span class="nav-group-label" style="margin-top:1.5rem">Gestión</span>
+    <a href="#" class="nav-item" data-page="juzgados" id="nav-juzgados">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V10l7-7 7 7v11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 21v-4h4v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span>Juzgados</span>
+    </a>
+    <a href="#" class="nav-item" data-page="reportes" id="nav-reportes">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M9 19v-6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2Zm7 0V5a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2Zm5-8v8a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2Z" stroke="currentColor" stroke-width="1.8"/></svg>
+      <span>Reportes</span>
+    </a>
+
+    <span class="nav-group-label" style="margin-top:1.5rem">Sistema</span>
+    <a href="#" class="nav-item" id="nav-config">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z" stroke="currentColor" stroke-width="1.8"/></svg>
+      <span>Configuración</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="user-info">
+      <div class="user-avatar">FV</div>
+      <div class="user-details">
+        <span class="user-name">Flor Abigail Vallejo</span>
+        <span class="user-role">Abogada Externa</span>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ══════════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════════ -->
+<div class="main-wrapper">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="topbar-search">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.8"/><path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <input type="text" id="globalSearch" placeholder="Buscar por nombre, cédula o radicado…" autocomplete="off"/>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn-icon" title="Notificaciones">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="notif-dot"></span>
+      </button>
+      <div class="topbar-date" id="topbarDate"></div>
+    </div>
+  </header>
+
+  <!-- ═══════════ PAGE: DASHBOARD ═══════════ -->
+  <main class="page active" id="page-dashboard">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Dashboard</h1>
+        <p class="page-subtitle">Resumen general de la cartera jurídica — FOGADE S.A.S.</p>
+      </div>
+      <button class="btn-primary" onclick="openPage('nuevo')">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Nuevo Registro
+      </button>
+    </div>
+
+    <!-- KPI CARDS -->
+    <div class="kpi-grid">
+      <div class="kpi-card" style="--accent:#1a56db">
+        <div class="kpi-icon" style="background:rgba(26,86,219,.12)">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#1a56db" stroke-width="1.8"/><circle cx="9" cy="7" r="4" stroke="#1a56db" stroke-width="1.8"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#1a56db" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <div class="kpi-data">
+          <span class="kpi-value" data-target="247">0</span>
+          <span class="kpi-label">Total Deudores</span>
+        </div>
+        <div class="kpi-trend up">↑ 12 este mes</div>
+      </div>
+
+      <div class="kpi-card" style="--accent:#0e9f6e">
+        <div class="kpi-icon" style="background:rgba(14,159,110,.12)">
+          <svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="1" x2="12" y2="23" stroke="#0e9f6e" stroke-width="1.8" stroke-linecap="round"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="#0e9f6e" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <div class="kpi-data">
+          <span class="kpi-value currency" data-target="4820350000">0</span>
+          <span class="kpi-label">Cartera Total</span>
+        </div>
+        <div class="kpi-trend up">↑ $142M recaudado</div>
+      </div>
+
+      <div class="kpi-card" style="--accent:#ff5a1f">
+        <div class="kpi-icon" style="background:rgba(255,90,31,.12)">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" stroke="#ff5a1f" stroke-width="1.8"/><line x1="12" y1="9" x2="12" y2="13" stroke="#ff5a1f" stroke-width="1.8" stroke-linecap="round"/><line x1="12" y1="17" x2="12.01" y2="17" stroke="#ff5a1f" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="kpi-data">
+          <span class="kpi-value" data-target="38">0</span>
+          <span class="kpi-label">Críticos / Urgentes</span>
+        </div>
+        <div class="kpi-trend down">↑ 5 en alerta</div>
+      </div>
+
+      <div class="kpi-card" style="--accent:#9061f9">
+        <div class="kpi-icon" style="background:rgba(144,97,249,.12)">
+          <svg viewBox="0 0 24 24" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="#9061f9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="kpi-data">
+          <span class="kpi-value" data-target="63">0</span>
+          <span class="kpi-label">% Recuperación</span>
+        </div>
+        <div class="kpi-trend up">↑ +8% vs mes anterior</div>
+      </div>
+    </div>
+
+    <!-- CHARTS ROW -->
+    <div class="charts-row">
+      <div class="chart-card">
+        <h3 class="chart-title">Estado de Procesos</h3>
+        <div class="donut-wrap">
+          <svg class="donut-chart" viewBox="0 0 160 160" id="donutChart"></svg>
+          <div class="donut-legend" id="donutLegend"></div>
+        </div>
+      </div>
+
+      <div class="chart-card chart-wide">
+        <h3 class="chart-title">Recaudo Mensual 2025</h3>
+        <div class="bar-chart-wrap" id="barChart"></div>
+      </div>
+    </div>
+
+    <!-- RECENT -->
+    <div class="recent-card">
+      <div class="recent-header">
+        <h3 class="chart-title">Últimos Registros</h3>
+        <a href="#" onclick="openPage('cartera')" class="see-all">Ver todos →</a>
+      </div>
+      <div id="recentTable"></div>
+    </div>
+  </main>
+
+  <!-- ═══════════ PAGE: CARTERA ═══════════ -->
+  <main class="page" id="page-cartera">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Cartera de Clientes</h1>
+        <p class="page-subtitle">Gestión completa de deudores y procesos jurídicos</p>
+      </div>
+      <button class="btn-primary" onclick="openPage('nuevo')">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Nuevo Registro
+      </button>
+    </div>
+
+    <!-- FILTROS -->
+    <div class="filters-bar">
+      <div class="filter-search">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.8"/><path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <input type="text" id="tableSearch" placeholder="Buscar nombre, cédula, radicado…" oninput="filterTable()"/>
+      </div>
+      <select id="filterEstado" onchange="filterTable()" class="filter-select">
+        <option value="">Todos los Estados</option>
+        <option value="ACTIVO">Activo</option>
+        <option value="EN MANDAMIENTO">En Mandamiento</option>
+        <option value="EN LIQUIDACIÓN">En Liquidación</option>
+        <option value="ARCHIVO">Archivo</option>
+        <option value="SENTENCIA">Sentencia</option>
+        <option value="SUSPENDIDO">Suspendido</option>
+      </select>
+      <select id="filterJuzgado" onchange="filterTable()" class="filter-select">
+        <option value="">Todos los Juzgados</option>
+        <option value="PRIMERO CIVIL">Primero Civil</option>
+        <option value="SEGUNDO CIVIL">Segundo Civil</option>
+        <option value="PROMISCUO MUNICIPAL">Promiscuo Municipal</option>
+        <option value="TERCERO CIVIL">Tercero Civil</option>
+      </select>
+      <select id="filterNivel" onchange="filterTable()" class="filter-select">
+        <option value="">Nivel Recuperación</option>
+        <option value="ALTO">Alto</option>
+        <option value="MEDIO">Medio</option>
+        <option value="BAJO">Bajo</option>
+        <option value="CRITICO">Crítico</option>
+      </select>
+      <button class="btn-outline" onclick="clearFilters()">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Limpiar
+      </button>
+    </div>
+
+    <div class="table-wrap" id="tableWrap">
+      <!-- Populated by JS -->
+    </div>
+    <div class="table-pagination" id="tablePagination"></div>
+  </main>
+
+  <!-- ═══════════ PAGE: NUEVO REGISTRO ═══════════ -->
+  <main class="page" id="page-nuevo">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Nuevo Registro</h1>
+        <p class="page-subtitle">Ingrese los datos del proceso jurídico</p>
+      </div>
+      <button class="btn-outline" onclick="openPage('cartera')">
+        ← Volver a Cartera
+      </button>
+    </div>
+
+    <form class="form-card" id="formNuevo" onsubmit="saveRecord(event)">
+      <!-- SECCIÓN 1 -->
+      <div class="form-section">
+        <div class="form-section-title">
+          <span class="form-section-num">1</span>
+          Información del Deudor
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="f_cedula">N° Identificación (Cédula) *</label>
+            <input type="text" id="f_cedula" placeholder="Ej: 1075234567" required/>
+          </div>
+          <div class="form-group">
+            <label for="f_nombre">Nombre del Deudor *</label>
+            <input type="text" id="f_nombre" placeholder="Nombre completo" required/>
+          </div>
+          <div class="form-group">
+            <label for="f_codeudor">Nombre del Codeudor</label>
+            <input type="text" id="f_codeudor" placeholder="Si aplica"/>
+          </div>
+          <div class="form-group">
+            <label for="f_municipio">Municipio</label>
+            <select id="f_municipio">
+              <option value="">Seleccionar…</option>
+              <option>Mocoa</option>
+              <option>Puerto Asís</option>
+              <option>Villagarzón</option>
+              <option>Puerto Caicedo</option>
+              <option>Orito</option>
+              <option>San Francisco</option>
+              <option>Sibundoy</option>
+              <option>Colón</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 2 -->
+      <div class="form-section">
+        <div class="form-section-title">
+          <span class="form-section-num">2</span>
+          Datos del Crédito FOGADE
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="f_fecha_credito">Fecha Crédito FOGADE</label>
+            <input type="date" id="f_fecha_credito"/>
+          </div>
+          <div class="form-group">
+            <label for="f_no_credito">N° Crédito FOGADE</label>
+            <input type="text" id="f_no_credito" placeholder="Ej: 2024-001"/>
+          </div>
+          <div class="form-group">
+            <label for="f_no_pagare">N° Pagaré FOGADE</label>
+            <input type="text" id="f_no_pagare" placeholder="Ej: PAG-2024-001"/>
+          </div>
+          <div class="form-group">
+            <label for="f_saldo_capital">Saldo Capital Demandado *</label>
+            <input type="number" id="f_saldo_capital" placeholder="0" min="0" required/>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 3 -->
+      <div class="form-section">
+        <div class="form-section-title">
+          <span class="form-section-num">3</span>
+          Proceso Jurídico
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="f_fecha_demanda">Presentación Demanda</label>
+            <input type="date" id="f_fecha_demanda"/>
+          </div>
+          <div class="form-group">
+            <label for="f_juzgado">Juzgado</label>
+            <select id="f_juzgado">
+              <option value="">Seleccionar…</option>
+              <option>PRIMERO CIVIL MUNICIPAL</option>
+              <option>SEGUNDO CIVIL MUNICIPAL</option>
+              <option>PROMISCUO MUNICIPAL</option>
+              <option>TERCERO CIVIL MUNICIPAL</option>
+              <option>PRIMERO CIVIL CIRCUITO</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f_radicado">N° Radicado</label>
+            <input type="text" id="f_radicado" placeholder="Ej: 2024-59"/>
+          </div>
+          <div class="form-group">
+            <label for="f_medida">Medida Cautelar Solicitada</label>
+            <select id="f_medida">
+              <option value="">Seleccionar…</option>
+              <option>EMBARGO DE SALARIOS</option>
+              <option>EMBARGO DE BIENES</option>
+              <option>EMBARGO DE CUENTAS</option>
+              <option>SECUESTRO DE BIENES</option>
+              <option>NINGUNA</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f_mandamiento">Mandamiento de Pago</label>
+            <input type="date" id="f_mandamiento"/>
+          </div>
+          <div class="form-group">
+            <label for="f_notificacion">Notificación</label>
+            <input type="date" id="f_notificacion"/>
+          </div>
+          <div class="form-group">
+            <label for="f_auto">Auto Seguir Adelante Ejecución</label>
+            <input type="date" id="f_auto"/>
+          </div>
+          <div class="form-group">
+            <label for="f_liquidacion">Liquidación / Creación Remates</label>
+            <input type="date" id="f_liquidacion"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 4 -->
+      <div class="form-section">
+        <div class="form-section-title">
+          <span class="form-section-num">4</span>
+          Seguimiento y Recuperación
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="f_estado">Estado Actual *</label>
+            <select id="f_estado" required>
+              <option value="">Seleccionar…</option>
+              <option value="ACTIVO">Activo</option>
+              <option value="EN MANDAMIENTO">En Mandamiento de Pago</option>
+              <option value="EN LIQUIDACIÓN">En Liquidación</option>
+              <option value="SENTENCIA">Sentencia</option>
+              <option value="ARCHIVO">Archivo</option>
+              <option value="SUSPENDIDO">Suspendido</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f_nivel">Nivel de Recuperación Contratista</label>
+            <select id="f_nivel">
+              <option value="">Seleccionar…</option>
+              <option value="ALTO">Alto</option>
+              <option value="MEDIO">Medio</option>
+              <option value="BAJO">Bajo</option>
+              <option value="CRITICO">Crítico</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f_recaudo">Total Recaudo a la Fecha</label>
+            <input type="number" id="f_recaudo" placeholder="0" min="0"/>
+          </div>
+          <div class="form-group form-group-full">
+            <label for="f_observacion">Observación</label>
+            <textarea id="f_observacion" rows="4" placeholder="Ingrese observaciones relevantes del proceso…"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-outline" onclick="openPage('cartera')">Cancelar</button>
+        <button type="submit" class="btn-primary">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z" stroke="currentColor" stroke-width="1.8"/><polyline points="17 21 17 13 7 13 7 21" stroke="currentColor" stroke-width="1.8"/><polyline points="7 3 7 8 15 8" stroke="currentColor" stroke-width="1.8"/></svg>
+          Guardar Registro
+        </button>
+      </div>
+    </form>
+  </main>
+
+  <!-- ═══════════ PAGE: JUZGADOS ═══════════ -->
+  <main class="page" id="page-juzgados">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Juzgados</h1>
+        <p class="page-subtitle">Distribución de procesos por juzgado</p>
+      </div>
+    </div>
+    <div id="juzgadosContent"></div>
+  </main>
+
+  <!-- ═══════════ PAGE: REPORTES ═══════════ -->
+  <main class="page" id="page-reportes">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Reportes</h1>
+        <p class="page-subtitle">Análisis y exportación de información</p>
+      </div>
+    </div>
+    <div class="reports-grid" id="reportsGrid"></div>
+  </main>
+
+</div><!-- /main-wrapper -->
+
+<!-- ══════════════════════════════════════════════
+     MODAL: DETALLE / EDITAR REGISTRO
+══════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modalRecord">
+    <div class="modal-header">
+      <div>
+        <h2 class="modal-title" id="modalTitle">Detalle del Proceso</h2>
+        <p class="modal-sub" id="modalSub"></p>
+      </div>
+      <button class="modal-close" onclick="closeModalDirect()">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- Populated by JS -->
+    </div>
+    <div class="modal-footer" id="modalFooter"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
